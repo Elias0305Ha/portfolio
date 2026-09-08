@@ -250,31 +250,33 @@
     ]
   },
   {
-    "id": "brightpath",
-    "title": "BrightPath Flexible Tutoring",
+    "id": "bloom",
+    "title": "Bloom",
     "tracks": [
       "engineering"
     ],
     "tags": [
-      "web-app",
-      "booking",
-      "debugging",
-      "deployment"
+      "mobile",
+      "flutter",
+      "charts",
+      "offline-sync"
     ],
-    "pitch": "A tutoring service's client intake funnel, built end to end and debugged in production against real bookings.",
-    "description": "A deployed site with Calendly booking behind required contact fields and automated confirmation and reminder emails. A booking defect was traced to session times rendering in each visitor's local zone rather than the service zone; the page was pinned to Pacific time and confirmations moved to email. Positioned on bilingual English/Amharic K-12 instruction for the East African community in Greater Seattle, with a QR-coded print flyer and social video routing to the booking page.",
+    "pitch": "A Flutter app for mood tracking, habit formation and weekly reflection, backed by cloud persistence.",
+    "description": "Mood logging captures intensity, activities, triggers and notes, and feeds a daily hub with a progress ring, todos and an evening review. Habits carry completions, streaks and stats; the timeline groups entries by day with mood filters; the weekly review adds a week selector and charts. Local notifications drive a configurable daily reminder, and everything persists to MongoDB Atlas through mongo_dart.",
     "stack": [
-      "Next.js",
-      "Vercel",
-      "Calendly",
-      "Email automation"
+      "Flutter",
+      "Dart",
+      "MongoDB Atlas",
+      "mongo_dart"
     ],
-    "repoUrl": null,
+    "repoUrl": "https://github.com/Elias0305Ha/bloom_app",
     "liveUrl": null,
     "embedUrl": null,
-    "image": null,
+    "image": "https://raw.githubusercontent.com/Elias0305Ha/bloom_app/main/docs/screenshots/Homepage.png",
     "year": 2025,
-    "highlight": []
+    "highlight": [
+      "engineering"
+    ]
   },
   {
     "id": "cinelog",
@@ -352,5 +354,52 @@
     "image": null,
     "year": 2023,
     "highlight": []
+  },
+  {
+    "id": "DRAFT-bot",
+    "title": "TITLE_TODO — the bot",
+    "tracks": [
+      "ai",
+      "engineering"
+    ],
+    "tags": [
+      "TAG_TODO"
+    ],
+    "pitch": "PITCH_TODO — one sentence on what it does for whoever uses it.",
+    "description": "DESCRIPTION_TODO — two or three sentences. What it does, the one decision you made that another engineer would notice, and what it proved.",
+    "stack": [
+      "STACK_TODO"
+    ],
+    "repoUrl": null,
+    "liveUrl": null,
+    "embedUrl": null,
+    "image": null,
+    "year": 2026,
+    "highlight": [],
+    "draft": true
+  },
+  {
+    "id": "DRAFT-data-analysis",
+    "title": "TITLE_TODO — the data analysis project",
+    "tracks": [
+      "data"
+    ],
+    "tags": [
+      "TAG_TODO"
+    ],
+    "pitch": "PITCH_TODO — the question it answers, in one sentence.",
+    "description": "DESCRIPTION_TODO — where the data came from, what you did to it, and what the analysis concluded. A number the reader can hold on to helps.",
+    "stack": [
+      "STACK_TODO"
+    ],
+    "repoUrl": null,
+    "liveUrl": null,
+    "embedUrl": null,
+    "image": null,
+    "year": 2026,
+    "highlight": [
+      "data"
+    ],
+    "draft": true
   }
 ]

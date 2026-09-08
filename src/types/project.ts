@@ -16,7 +16,16 @@ export interface Project {
   readonly year: number;
   /** Tracks where this project is promoted to the featured row. Must be a subset of tracks. */
   readonly highlight: readonly TrackId[];
+  /**
+   * A reserved slot for work that is not finished. Drafts stay in the data file
+   * so the entry is ready to fill in, but never reach the site — a recruiter
+   * should not see a "coming soon" card.
+   */
+  readonly draft: boolean;
 }
+
+/** projects.json may omit `draft`; the loader normalises it to false. */
+export type ProjectInput = Omit<Project, "draft"> & { readonly draft?: boolean };
 
 /**
  * Discriminated union so a card never null-checks at render time. This is what

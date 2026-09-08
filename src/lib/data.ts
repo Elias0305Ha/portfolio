@@ -1,7 +1,7 @@
 import projectsJson from "@/data/projects.json";
 import tracksJson from "@/data/tracks.json";
 import type { Project, TrackId, TracksConfig } from "@/types";
-import { TRACK_IDS, isProject, isTracksConfig } from "@/types";
+import { TRACK_IDS, isProjectInput, isTracksConfig } from "@/types";
 
 function isUnknownArray(value: unknown): value is readonly unknown[] {
   return Array.isArray(value);
@@ -15,7 +15,7 @@ function loadProjects(): readonly Project[] {
 
   const seen = new Set<string>();
   return raw.map((entry, index) => {
-    if (!isProject(entry)) {
+    if (!isProjectInput(entry)) {
       throw new Error(
         "src/data/projects.json[" +
           index +
@@ -26,7 +26,7 @@ function loadProjects(): readonly Project[] {
       throw new Error("src/data/projects.json has a duplicate id: " + entry.id);
     }
     seen.add(entry.id);
-    return entry;
+    return { ...entry, draft: entry.draft === true };
   });
 }
 
@@ -38,8 +38,13 @@ function loadTracks(): TracksConfig {
   return raw;
 }
 
+const ALL_PROJECTS: readonly Project[] = loadProjects();
+
 /** Validated once at module load, so bad data fails the build, not the browser. */
-export const PROJECTS: readonly Project[] = loadProjects();
+export const PROJECTS: readonly Project[] = ALL_PROJECTS.filter((p) => !p.draft);
+
+/** Reserved slots, kept out of every rendered surface until they are filled in. */
+export const DRAFT_PROJECTS: readonly Project[] = ALL_PROJECTS.filter((p) => p.draft);
 export const TRACKS: TracksConfig = loadTracks();
 
 export function getProject(id: string): Project | undefined {
