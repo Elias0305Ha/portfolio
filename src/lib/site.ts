@@ -9,4 +9,6 @@ export const SITE = {
     "Data analysis, AI/ML evaluation and full-stack engineering. Three years of institutional data work, a BS in Computer Information Technology, and an MS in Data Science in progress.",
   url: siteUrl,
   github: "https://github.com/Elias0305Ha",
+  /** Swap the file at this path to change which resume the site serves. */
+  resume: "/resume/elias-hakenso-resume.pdf",
 } as const;

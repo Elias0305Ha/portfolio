@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } fro
 import { useRouter } from "next/navigation";
 import {
   Check,
+  FileText,
   LayoutGrid,
   Link2,
   Moon,
@@ -135,6 +136,14 @@ export function PortfolioApp({ initialFilters }: { readonly initialFilters: Filt
         run: copyLink,
       },
       {
+        id: "resume",
+        title: "Download the resume",
+        hint: "PDF",
+        run: () => {
+          window.location.href = SITE.resume;
+        },
+      },
+      {
         id: "clear",
         title: "Clear all filters",
         hint: "Filters",
@@ -158,6 +167,15 @@ export function PortfolioApp({ initialFilters }: { readonly initialFilters: Filt
             </p>
           </div>
           <div className="no-print flex shrink-0 items-center gap-2">
+            <a
+              href={SITE.resume}
+              download
+              className="inline-flex h-9 items-center gap-2 rounded-lg border border-line px-3 text-sm text-muted hover:border-accent hover:text-ink motion-safe:transition motion-safe:duration-150"
+            >
+              <FileText aria-hidden="true" className="h-4 w-4" />
+              <span className="hidden sm:inline">Resume</span>
+              <span className="sr-only sm:hidden">Download resume (PDF)</span>
+            </a>
             <ToolbarButton
               label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
               onClick={toggleTheme}
