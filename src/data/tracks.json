@@ -2,19 +2,19 @@
   "data": {
     "id": "data",
     "name": "Data",
-    "tagline": "TAGLINE_TODO — one line about your institutional data work.",
+    "tagline": "Three years maintaining and reporting on institutional data — validating a 25,000-record student dataset, automating recurring reporting in Python and Excel, and running statistical analysis in SAS for department stakeholders. MS in Data Science in progress.",
     "defaultSort": "year-desc"
   },
   "ai": {
     "id": "ai",
     "name": "AI / ML",
-    "tagline": "TAGLINE_TODO — one line about your AI and ML work.",
+    "tagline": "Model output evaluation and LLM application development: label taxonomy design, annotation, fine-tuning and benchmarking against real baselines, and failure modes documented rather than hidden.",
     "defaultSort": "year-desc"
   },
   "engineering": {
     "id": "engineering",
     "name": "Engineering",
-    "tagline": "TAGLINE_TODO — one line about your software engineering work.",
+    "tagline": "Full-stack work in Python, Flask, Node.js and React, built with production habits already in place — structured logging, rate limiting, pytest coverage, and documented failure modes.",
     "defaultSort": "year-desc"
   }
 }

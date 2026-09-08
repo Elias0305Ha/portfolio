@@ -10,7 +10,7 @@ export function personJsonLd(): JsonLd {
     "@type": "Person",
     name: SITE.name,
     url: SITE.url,
-    sameAs: [SITE.github],
+    sameAs: [SITE.github, SITE.linkedin],
     description: SITE.description,
     knowsAbout: [...new Set(PROJECTS.flatMap((project) => project.stack))].sort(),
   };
