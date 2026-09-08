@@ -8,14 +8,15 @@ export interface FilterState {
   readonly track: AudienceId;
   readonly tags: readonly string[];
   readonly q: string;
-  readonly sort: SortKey;
+  /** null means "whatever this track's defaultSort says". */
+  readonly sort: SortKey | null;
 }
 
 export const DEFAULT_FILTERS: FilterState = {
   track: "all",
   tags: [],
   q: "",
-  sort: "year-desc",
+  sort: null,
 };
 
 export interface TagCount {

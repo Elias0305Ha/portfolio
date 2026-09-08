@@ -1,0 +1,20 @@
+{
+  "data": {
+    "id": "data",
+    "name": "Data",
+    "tagline": "TAGLINE_TODO — one line about your institutional data work.",
+    "defaultSort": "year-desc"
+  },
+  "ai": {
+    "id": "ai",
+    "name": "AI / ML",
+    "tagline": "TAGLINE_TODO — one line about your AI and ML work.",
+    "defaultSort": "year-desc"
+  },
+  "engineering": {
+    "id": "engineering",
+    "name": "Engineering",
+    "tagline": "TAGLINE_TODO — one line about your software engineering work.",
+    "defaultSort": "year-desc"
+  }
+}

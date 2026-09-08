@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
 
-## Getting Started
+A three-audience portfolio. A visitor picks Data, AI/ML or Engineering and the
+page swaps its tagline, featured set, archive and tag ordering to match. Every
+view has its own URL, so a recruiter can be sent straight to the right one.
 
-First, run the development server:
+## Commands
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev        # local development
+npm run check      # typecheck + lint + build, the full gate
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`next build` no longer runs ESLint in Next 16, so `npm run lint` is a separate step.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## The data contract
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`src/data/projects.json` is the single source of truth. It is validated at module
+load by `src/types/guards.ts`, so a malformed entry fails the build rather than
+rendering a broken card.
 
-## Learn More
+| Field | Notes |
+| --- | --- |
+| `tracks[]` | `"data"` / `"ai"` / `"engineering"`. A project can be in several. |
+| `highlight[]` | Tracks where this project is featured. Must be a subset of `tracks`. |
+| `embedUrl` | Renders a lazy 16:9 iframe with a skeleton. |
+| `image` | Used only when `embedUrl` is null. |
+| Both null | Renders a clean text-only card. Never a grey box. |
 
-To learn more about Next.js, take a look at the following resources:
+`src/data/tracks.json` holds each track's display name, header tagline and
+`defaultSort`. The default sort applies whenever the URL has no explicit `?sort`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## URL parameters
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Param | Values |
+| --- | --- |
+| `track` | `data`, `ai`, `engineering`, or omitted for all |
+| `tags` | comma-separated; a project must carry **every** listed tag |
+| `q` | free text over title, pitch, description, tags and stack |
+| `sort` | `year-desc`, `year-asc`, `title-asc`; omitted means the track default |
 
-## Deploy on Vercel
+Only non-default values are written, so each distinct view has exactly one address.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Still to do
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `TAGLINE_TODO` in `src/data/tracks.json` — three lines of copy, one per track.
+- The Data track has only three projects; institutional data work is not yet represented.
+- `NEXT_PUBLIC_SITE_URL` should be set at build time once the domain exists.
