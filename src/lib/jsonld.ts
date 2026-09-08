@@ -23,7 +23,7 @@ export function projectJsonLd(project: Project): JsonLd {
     name: project.title,
     description: project.pitch,
     abstract: project.description,
-    codeRepository: project.repoUrl,
+    ...(project.repoUrl === null ? {} : { codeRepository: project.repoUrl }),
     programmingLanguage: [...project.stack],
     keywords: [...project.tags].join(", "),
     dateCreated: String(project.year),

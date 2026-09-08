@@ -94,15 +94,21 @@ export default async function ProjectPage({ params }: PageProps) {
         </section>
 
         <div className="flex flex-wrap gap-3 pt-2">
-          <a
-            href={project.repoUrl}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="inline-flex items-center gap-2 rounded-lg border border-line px-3 py-2 text-sm hover:border-accent motion-safe:transition motion-safe:duration-150"
-          >
-            <Code2 aria-hidden="true" className="h-4 w-4" />
-            Source
-          </a>
+          {project.repoUrl === null ? (
+            <p className="text-sm text-muted">
+              Source is private; this was built for a client.
+            </p>
+          ) : (
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="inline-flex items-center gap-2 rounded-lg border border-line px-3 py-2 text-sm hover:border-accent motion-safe:transition motion-safe:duration-150"
+            >
+              <Code2 aria-hidden="true" className="h-4 w-4" />
+              Source
+            </a>
+          )}
           {project.liveUrl !== null && (
             <a
               href={project.liveUrl}

@@ -8,7 +8,8 @@ export interface Project {
   readonly pitch: string;
   readonly description: string;
   readonly stack: readonly string[];
-  readonly repoUrl: string;
+  /** null for private or client work, so a card never links to a 404. */
+  readonly repoUrl: string | null;
   readonly liveUrl: string | null;
   readonly embedUrl: string | null;
   readonly image: string | null;

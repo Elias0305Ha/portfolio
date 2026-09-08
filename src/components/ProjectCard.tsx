@@ -61,6 +61,11 @@ export function ProjectCard({ project, featured = false }: CardProps) {
               <Code2 aria-hidden="true" className="h-3.5 w-3.5" />
               {project.stack.slice(0, 3).join(" · ")}
             </span>
+            {project.repoUrl === null && (
+              <span className="rounded-full border border-line px-1.5 py-0.5 text-[10px]">
+                private
+              </span>
+            )}
             <ArrowUpRight
               aria-hidden="true"
               className="ml-auto h-4 w-4 opacity-0 motion-safe:transition-opacity motion-safe:duration-150 group-hover:opacity-100 group-focus-within:opacity-100"

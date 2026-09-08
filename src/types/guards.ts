@@ -31,7 +31,7 @@ export function isProject(value: unknown): value is Project {
   if (typeof value.pitch !== "string") return false;
   if (typeof value.description !== "string") return false;
   if (!isStringArray(value.stack)) return false;
-  if (typeof value.repoUrl !== "string") return false;
+  if (!isNullableString(value.repoUrl)) return false;
   if (!isNullableString(value.liveUrl)) return false;
   if (!isNullableString(value.embedUrl)) return false;
   if (!isNullableString(value.image)) return false;
