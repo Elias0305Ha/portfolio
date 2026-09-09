@@ -52,51 +52,49 @@ export function useFilterState(
     };
   }, []);
 
-  const update = useCallback(
-    (patch: Partial<FilterState>, debounceMs = 0) => {
-      setFilters((current) => {
-        const next: FilterState = { ...current, ...patch };
-        sync(next, debounceMs);
-        return next;
-      });
+  /**
+   * `next` is computed from the current render's state, never inside a setState
+   * updater: an updater runs during render, and starting a router transition
+   * there is a side effect in the render phase that React 19 rejects.
+   */
+  const commit = useCallback(
+    (next: FilterState, debounceMs = 0) => {
+      setFilters(next);
+      sync(next, debounceMs);
     },
     [sync],
   );
 
   const actions: FilterActions = {
-    setTrack: useCallback((track: AudienceId) => update({ track }), [update]),
+    setTrack: useCallback(
+      (track: AudienceId) => commit({ ...filters, track }),
+      [commit, filters],
+    ),
     toggleTag: useCallback(
       (tag: string) => {
-        setFilters((current) => {
-          const has = current.tags.includes(tag);
-          const tags = has
-            ? current.tags.filter((item) => item !== tag)
-            : [...current.tags, tag].sort();
-          const next: FilterState = { ...current, tags };
-          sync(next, 0);
-          return next;
-        });
+        const tags = filters.tags.includes(tag)
+          ? filters.tags.filter((item) => item !== tag)
+          : [...filters.tags, tag].sort();
+        commit({ ...filters, tags });
       },
-      [sync],
+      [commit, filters],
     ),
     removeTag: useCallback(
-      (tag: string) => {
-        setFilters((current) => {
-          const next: FilterState = {
-            ...current,
-            tags: current.tags.filter((item) => item !== tag),
-          };
-          sync(next, 0);
-          return next;
-        });
-      },
-      [sync],
+      (tag: string) =>
+        commit({ ...filters, tags: filters.tags.filter((item) => item !== tag) }),
+      [commit, filters],
     ),
-    setQuery: useCallback((q: string) => update({ q }, 200), [update]),
-    setSort: useCallback((sort: SortKey) => update({ sort }), [update]),
+    setQuery: useCallback(
+      (q: string) => commit({ ...filters, q }, 200),
+      [commit, filters],
+    ),
+    setSort: useCallback(
+      (sort: SortKey) => commit({ ...filters, sort }),
+      [commit, filters],
+    ),
     clearFilters: useCallback(
-      () => update({ tags: DEFAULT_FILTERS.tags, q: DEFAULT_FILTERS.q }),
-      [update],
+      () => commit({ ...filters, tags: DEFAULT_FILTERS.tags, q: DEFAULT_FILTERS.q }),
+      [commit, filters],
     ),
   };
 
