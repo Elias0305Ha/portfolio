@@ -75,23 +75,20 @@ export default async function ProjectPage({ params }: PageProps) {
           </ul>
         </section>
 
-        <section aria-labelledby="tags-heading" className="space-y-2">
-          <h2 id="tags-heading" className="text-sm font-medium uppercase tracking-wide text-muted">
-            Tags
-          </h2>
-          <ul className="flex flex-wrap gap-1.5">
-            {project.tags.map((tag) => (
-              <li key={tag}>
-                <Link
-                  href={"/?tags=" + encodeURIComponent(tag)}
-                  className="rounded-full border border-line px-2.5 py-1 text-xs text-muted hover:border-accent hover:text-ink motion-safe:transition motion-safe:duration-150"
-                >
-                  {tag}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <p className="text-xs text-muted">
+          Filed under{" "}
+          {project.tags.map((tag, index) => (
+            <span key={tag}>
+              {index > 0 && " · "}
+              <Link
+                href={"/?tags=" + encodeURIComponent(tag)}
+                className="underline decoration-line underline-offset-4 hover:text-accent motion-safe:transition-colors motion-safe:duration-150"
+              >
+                {tag}
+              </Link>
+            </span>
+          ))}
+        </p>
 
         <div className="flex flex-wrap gap-3 pt-2">
           {project.repoUrl === null ? (

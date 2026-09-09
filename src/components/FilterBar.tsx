@@ -1,14 +1,16 @@
 "use client";
 
-import { Search, X } from "lucide-react";
-import type { FilterState, TagCount } from "@/types";
+import { X } from "lucide-react";
+import type { FilterState, SortKey, TagCount } from "@/types";
+import { SortControl } from "@/components/SortControl";
 
 interface FilterBarProps {
   readonly filters: FilterState;
   readonly tagCounts: readonly TagCount[];
+  readonly sort: SortKey;
+  readonly onSortChange: (sort: SortKey) => void;
   readonly onToggleTag: (tag: string) => void;
   readonly onRemoveTag: (tag: string) => void;
-  readonly onClearQuery: () => void;
   readonly onClearAll: () => void;
   readonly resultCount: number;
 }
@@ -16,9 +18,10 @@ interface FilterBarProps {
 export function FilterBar({
   filters,
   tagCounts,
+  sort,
+  onSortChange,
   onToggleTag,
   onRemoveTag,
-  onClearQuery,
   onClearAll,
   resultCount,
 }: FilterBarProps) {
@@ -61,23 +64,13 @@ export function FilterBar({
           {resultCount} {resultCount === 1 ? "project" : "projects"}
         </p>
 
+        {resultCount > 1 && <SortControl value={sort} onChange={onSortChange} />}
+
         {active && (
           <>
             <span aria-hidden="true" className="text-line">
               |
             </span>
-            {filters.q.length > 0 && (
-              <button
-                type="button"
-                onClick={onClearQuery}
-                className="inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-1 text-xs text-muted hover:border-accent hover:text-ink motion-safe:transition motion-safe:duration-150"
-              >
-                <Search aria-hidden="true" className="h-3 w-3" />
-                <span>&ldquo;{filters.q}&rdquo;</span>
-                <X aria-hidden="true" className="h-3 w-3" />
-                <span className="sr-only">Clear the search term</span>
-              </button>
-            )}
             {filters.tags.map((tag) => (
               <button
                 key={tag}

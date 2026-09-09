@@ -38,7 +38,11 @@ export function featuredFor(
   return sortProjects(featured, "year-desc");
 }
 
-/** Tags ordered by how often they occur inside the current audience, then alphabetically. */
+/**
+ * Tags ordered by how often they occur inside the current audience.
+ * A tag on a single project cannot narrow anything, so it is not offered as a
+ * filter — it stays searchable through `q` instead.
+ */
 export function tagCountsFor(projects: readonly Project[], audience: AudienceId): TagCount[] {
   const counts = new Map<string, number>();
   for (const project of projects) {
@@ -48,6 +52,7 @@ export function tagCountsFor(projects: readonly Project[], audience: AudienceId)
     }
   }
   return [...counts.entries()]
+    .filter(([, count]) => count > 1)
     .map(([tag, count]): TagCount => ({ tag, count }))
     .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
 }

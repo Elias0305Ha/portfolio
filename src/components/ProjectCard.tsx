@@ -5,22 +5,6 @@ import { ArrowUpRight, Code2 } from "lucide-react";
 import type { Project } from "@/types";
 import { ProjectMedia } from "@/components/ProjectMedia";
 
-function TagList({ tags }: { tags: readonly string[] }) {
-  if (tags.length === 0) return null;
-  return (
-    <ul className="flex flex-wrap gap-1.5" aria-label="Tags">
-      {tags.map((tag) => (
-        <li
-          key={tag}
-          className="rounded-full border border-line px-2 py-0.5 text-[11px] text-muted"
-        >
-          {tag}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 interface CardProps {
   readonly project: Project;
   readonly featured?: boolean;
@@ -55,7 +39,6 @@ export function ProjectCard({ project, featured = false }: CardProps) {
         )}
 
         <div className="mt-auto flex flex-col gap-2 pt-1">
-          <TagList tags={project.tags} />
           <div className="flex items-center gap-3 text-xs text-muted">
             <span className="inline-flex items-center gap-1">
               <Code2 aria-hidden="true" className="h-3.5 w-3.5" />
