@@ -1,5 +1,38 @@
 [
   {
+    "id": "language-access-skc",
+    "title": "Language Access in South King County",
+    "tracks": [
+      "data"
+    ],
+    "tags": [
+      "gap-analysis",
+      "geospatial",
+      "public-policy",
+      "power-bi"
+    ],
+    "pitch": "Measures where families in South King County speak a home language that the public services around them do not actually serve.",
+    "description": "Demand comes from Washington's 2024-25 school enrollment data (36,775 families, 140 languages); supply is 6,272 scored agency-language pairs across 51 agencies in seven sectors, each backed by an evidence link and capture date. The classification rule was written before any data was collected, and a standard Census apportionment method was tested and rejected after validation showed 7.1 points of mean absolute error. The finding: King County's binding translation list, built on 2016 data, omits Dari, the region's second most common home language (3,040 families). It went to the county as a memo, alongside a 4-page Power BI report and a map of access deserts.",
+    "stack": [
+      "Python",
+      "pandas",
+      "GeoPandas",
+      "DuckDB",
+      "Census API",
+      "OpenStreetMap / TIGER",
+      "Excel",
+      "Power BI"
+    ],
+    "repoUrl": "https://github.com/Elias0305Ha/language-access-skc",
+    "liveUrl": null,
+    "embedUrl": null,
+    "image": "https://raw.githubusercontent.com/Elias0305Ha/language-access-skc/main/images/page1-what-the-data-says.png",
+    "year": 2026,
+    "highlight": [
+      "data"
+    ]
+  },
+  {
     "id": "provenance-guard",
     "title": "Provenance Guard",
     "tracks": [
@@ -376,30 +409,6 @@
     "image": null,
     "year": 2026,
     "highlight": [],
-    "draft": true
-  },
-  {
-    "id": "DRAFT-data-analysis",
-    "title": "TITLE_TODO — the data analysis project",
-    "tracks": [
-      "data"
-    ],
-    "tags": [
-      "TAG_TODO"
-    ],
-    "pitch": "PITCH_TODO — the question it answers, in one sentence.",
-    "description": "DESCRIPTION_TODO — where the data came from, what you did to it, and what the analysis concluded. A number the reader can hold on to helps.",
-    "stack": [
-      "STACK_TODO"
-    ],
-    "repoUrl": null,
-    "liveUrl": null,
-    "embedUrl": null,
-    "image": null,
-    "year": 2026,
-    "highlight": [
-      "data"
-    ],
     "draft": true
   }
 ]
